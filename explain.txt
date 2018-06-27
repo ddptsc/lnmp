@@ -71,6 +71,7 @@ insert  into `user`(`id`,`name`,`gender`,`age`,`flag`) values (1,'allen',1,20,1)
 
 4.浏览器打开 
 http://192.168.1.142:8002/
+192.168.1.142为主机地址
 5.出现
 Array
 (
