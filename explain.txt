@@ -19,6 +19,7 @@ Docker version 18.03.1-ce, build 9ee9f40
 **************************************************************************
 
 二、安装Docker-Compose
+a、第一种方法安装
 1.# 首先检查linux有没有安装python-pip包
 # pip -V
 -bash: pip: command not found
@@ -29,9 +30,13 @@ Docker version 18.03.1-ce, build 9ee9f40
 #pip install --upgrade pip
 4.安装pip install docker-compose
 #pip install docker-compose
+b、如果安装失败用下面方法安装
+第二种方法安装
+#curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bi
+#chmod +x /usr/local/bin/docker-compose
 5.查看docker版本
-#docker-compose version
-docker-compose version 1.22.0-rc1, build e7de1bc3
+#docker-compose -v
+docker-compose version 1.8.0, build f3628c7
 
 **************************************************************************
 
