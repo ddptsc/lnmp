@@ -30,8 +30,8 @@ Docker version 18.03.1-ce, build 9ee9f40
 4.安装pip install docker-compose
 #pip install docker-compose
 5.查看docker版本
-#composer --version
-Composer version 1.6.3 2018-01-31 16:28:17
+#docker-compose version
+docker-compose version 1.22.0-rc1, build e7de1bc3
 
 **************************************************************************
 
