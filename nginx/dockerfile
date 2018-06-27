@@ -1,0 +1,15 @@
+FROM centos:centos7
+MAINTAINER deng
+WORKDIR /usr/local/src
+RUN yum install -y  wget gcc make pcre-devel zlib-devel openssl
+RUN wget http://nginx.org/download/nginx-1.15.0.tar.gz
+RUN tar -zxvf nginx-1.15.0.tar.gz
+WORKDIR nginx-1.15.0
+RUN ./configure   --prefix=/usr/local/nginx   --with-pcre
+RUN make && make install
+ENV HTTP_PHP_CONFIG \\\n\\\t#php\\\n\\\tlocation ~ \\\\.php\$ {\\\n\\\t\\\troot    html;\\\n\\\t\\\tfastcgi_pass   php:9000;\\\n\\\t\\\tfastcgi_index    index.php;\\\n\\\t\\\tfastcgi_param  SCRIPT_FILENAME    /usr/local/nginx/html\$fastcgi_script_name;\\\n\\\t\\\tinclude    fastcgi_params;\\\n\\\t}\\\n\\\n\\\t
+RUN sed -i -e "s@# deny access to .htaccess files, if Apache's document root@${HTTP_PHP_CONFIG}\n\t# deny access to .htaccess files, if Apache's document root@" /usr/local/nginx/conf/nginx.conf
+RUN sed -i -e 's/index  index.html index.htm;/index  index.html index.htm index.php;/' /usr/local/nginx/conf/nginx.conf
+
+EXPOSE 80 443
+ENTRYPOINT ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]

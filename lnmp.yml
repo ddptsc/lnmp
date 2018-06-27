@@ -1,0 +1,43 @@
+version: '2'
+services:
+  mysql:
+    build:
+        context: ~/lnmp/mysql
+        dockerfile: dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - ~/lnmp/mysql/data/mysql/:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    container_name: mysql
+    restart: always
+  php:
+    build:
+        context: ~/lnmp/php
+        dockerfile: dockerfile
+    ports:
+      - 9000:9000
+    volumes:
+      - ~/lnmp/nginx/html/:/usr/local/nginx/html
+      - ~/lnmp/php/conf/php.ini:/usr/local/php/etc/php.ini:ro
+    container_name: php
+    links:
+        - mysql:mysql
+    restart : always
+  nginx:
+    build:
+        context: ~/lnmp/nginx
+        dockerfile: dockerfile
+    ports:
+      - 8002:80
+      - 433:433
+    volumes:
+      - ~/lnmp/nginx/logs/:/usr/local/nginx/logs/
+      - ~/lnmp/nginx/html/:/usr/local/nginx/html/
+      - ~/lnmp/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf:ro
+    container_name: nginx
+    links:
+        - php:php
+    restart: always
+
