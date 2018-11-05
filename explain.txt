@@ -5,10 +5,18 @@ yum remove docker docker-common docker-selinux docker-engine
 2.安装依赖的软件包
 yum install -y yum-utils device-mapper-persistent-data lvm2
 3.设置使用 stable 软件源
-#yum-config-manager -add-repo https://download.docker.com/linux/centos/docker-ce.repo
-4.创建软件源缓存
+卸载旧版本
+yum remove docker  docker-common docker-selinux docker-engine
+国内源
+执行下面的命令添加 yum 软件源：
+yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+官方源:
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+可选：启用边缘和测试存储库。这些存储库包含在docker.repo上面的文件中，但默认情况下处于禁用状态。您可以将它们与稳定存储库一起启用。
+yum-config-manager --enable docker-ce-edge
+yum-config-manager --enable docker-ce-test
+4.更新 yum 软件源缓存，并安装 docker-ce。
 #yum makecache fast
-5安装最新版本 Docker CE
 #yum install docker-ce
 6启动docker
 #systemctl start docker
