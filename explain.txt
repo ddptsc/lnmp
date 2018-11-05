@@ -35,8 +35,8 @@ a、第一种方法安装
 #yum -y install epel-release 
 #yum -y install python-pip
 3.升级pip
-#pip
-4.安装pip install docker-compose
+#pip install --upgrade pip
+4.安装pip
 #pip install docker-compose
 b、如果安装失败用下面方法安装
 第二种方法安装
