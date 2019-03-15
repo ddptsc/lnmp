@@ -1,7 +1,7 @@
 FROM centos:centos7
 MAINTAINER deng
 WORKDIR /usr/local/src
-RUN yum -y install gcc gcc-c++ libxml2 libxml2-devel bzip2 bzip2-devel libmcrypt libmcrypt-devel openssl openssl-devel libcurl-devel libjpeg-devel libpng-devel freetype-devel readline readline-devel libxslt-devel perl perl-devel psmisc.x86_64 recode recode-devel libtidy libtidy-devel wget
+RUN yum -y install gcc gcc-c++ libxml2 libxml2-devel bzip2 bzip2-devel libmcrypt libmcrypt-devel openssl openssl-devel libcurl-devel libjpeg-devel libpng-devel freetype-devel readline readline-devel libxslt-devel perl perl-devel psmisc.x86_64 recode recode-devel libtidy libtidy-devel wget autoconf
 RUN wget http://cn2.php.net/distributions/php-7.2.7.tar.gz
 RUN tar -zxvf php-7.2.7.tar.gz
 WORKDIR /usr/local/src/php-7.2.7
